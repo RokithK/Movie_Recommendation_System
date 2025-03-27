@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Recommendation System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+        font-family: "Arial", sans-serif;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .header {
+        margin-bottom: 50px;
+        text-align: center;
+      }
+      .header h1 {
+        font-size: 3rem;
+        color: #ff6347; /* Tomato color for the header */
+        font-weight: bold;
+      }
+      .header p {
+        font-size: 1.2rem;
+        color: #d3d3d3; /* Light gray color for the subtitle */
+      }
+      .footer {
+        padding: 20px 0;
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        width: 100%;
+      }
+      .form-control {
+        max-width: 800px;
+        width: 100%;
+        margin: 20px auto;
+        border-radius: 30px;
+        padding: 20px 30px;
+        font-size: 1.5rem;
+        border: none;
+        text-align: center;
+      }
+      .form-control::placeholder {
+        color: #999;
+        font-size: 1.2rem;
+      }
+      .btn-primary {
+        background-color: #ff6347;
+        border-color: #ff6347;
+        border-radius: 30px;
+        padding: 15px 30px;
+        font-size: 1.5rem;
+        margin-top: 20px;
+      }
+      .btn-primary:hover {
+        background-color: #ff4500;
+        border-color: #ff4500;
+      }
+      .recommendations {
+        margin-top: 30px;
+        width: 100%;
+      }
+      .recommendations h2 {
+        color: #ff6347;
+      }
+      .card {
+        background-color: #2e2e2e;
+        color: #fff;
+        border: none;
+        margin-bottom: 20px;
+        border-radius: 15px;
+      }
+      .card-title {
+        color: #ff6347;
+      }
+      .additional-features {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .additional-features h2 {
+        color: #ff6347;
+        margin-bottom: 20px;
+      }
+      .additional-features p {
+        color: #d3d3d3;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <div class="header">
+        <h1>Movie Recommendation System</h1>
+        <p>Discover movies tailored to your taste</p>
+      </div>
+      <form action="/recommend" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="movie_name"
+            name="movie_name"
+            placeholder="Enter your favorite movie name"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Get Recommendations
+        </button>
+      </form>
+      {% if prediction_text %}
+      <div class="recommendations">
+        <h2>{{ prediction_text }}</h2>
+        {% if movies %}
+        <div class="row">
+          {% for movie in movies %}
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ movie }}</h5>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="additional-features">
+        <h2>Additional Features</h2>
+        <p>
+          Explore our curated lists of top-rated movies, latest releases, and
+          personalized recommendations based on your viewing history.
+        </p>
+        <p>Stay tuned for more exciting features coming soon!</p>
+      </div>
+    </div>
+    <div class="footer">
+      <p>&copy; 2025 Movie Recommendation System. All Rights Reserved.</p>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
